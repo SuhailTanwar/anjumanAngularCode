@@ -1,20 +1,45 @@
 <ion-app>
-  <ion-menu side="start" menuId="first" contentId="content1">
+  <ion-menu
+    side="start"
+    menuId="first"
+    contentId="content1"
+    (ionWillOpen)="willOpenMenu()"
+  >
     <ion-header class="menu-header">
       <ion-toolbar>
         <div class="ion-icon-wrapper">
           <ion-icon name="contact"></ion-icon>
         </div>
 
-        <ion-title>Suhail Tanwar</ion-title>
+        <ion-title>{{ profileName }}</ion-title>
       </ion-toolbar>
     </ion-header>
     <ion-content>
-      <ion-list *ngFor="let pages of navigate">
+      <ion-list>
         <ion-menu-toggle auto-hide="true">
-          <ion-item [routerLink]="pages.url" routerDirection="forward">
-            <ion-icon [name]="pages.icon" slot="start"></ion-icon>
-            {{ pages.title }}
+          <ion-item [routerLink]="['/home']" routerDirection="forward">
+            <ion-icon name="home" slot="start"></ion-icon>
+            Home
+          </ion-item>
+          <ion-item [routerLink]="['/my-profile']" routerDirection="forward">
+            <ion-icon name="person" slot="start"></ion-icon>
+            My Profile
+          </ion-item>
+          <ion-item [routerLink]="['/contacts']" routerDirection="forward">
+            <ion-icon name="contacts" slot="start"></ion-icon>
+            Community Stats
+          </ion-item>
+          <ion-item [routerLink]="['/contacts']" routerDirection="forward">
+            <ion-icon name="notifications" slot="start"></ion-icon>
+            Notification
+          </ion-item>
+          <ion-item [routerLink]="'[/contacts]'" routerDirection="forward">
+            <ion-icon name="settings" slot="start"></ion-icon>
+            Setting
+          </ion-item>
+          <ion-item routerDirection="forward" (click)="logout()">
+            <ion-icon name="log-out" slot="start"></ion-icon>
+            Logout
           </ion-item>
         </ion-menu-toggle>
       </ion-list>
