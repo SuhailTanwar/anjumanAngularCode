@@ -9,19 +9,21 @@
     top: 9px;
     background: #fff;
     z-index: 9999;
-    font-size: 12px;
+    font-size: 14px;
     font-weight: 600;
     letter-spacing: 0.25;
     padding: 0 5px;
     color: $colorCode;
     // text-transform: uppercase;
-    font-family: $fontFamily1;
+    //font-family: $fontFamily1;
   }
 
   ion-input {
     border: 1px solid $boxBorderColor;
-    border-radius: 3px;
+    border-radius: 5px;
     color: #000;
+    font-family: $fontFamily1;
+    font-size: 16px;
 
     ion-icon {
       padding: 8px;
@@ -32,10 +34,10 @@
 }
 
 .submit-btn {
-  width: 60%;
+  width: 75%;
   color: #fff;
-  height: 38px;
-  font-size: 12px;
+  height: 40px;
+  font-size: 14px;
   font-weight: 500;
   letter-spacing: 0.06em;
   text-transform: uppercase;
@@ -50,17 +52,18 @@
 
 ion-card {
   margin: 20px;
-  background-color:#fff;
+  background-color: #fff;
   ion-card-header {
     padding: 15px;
   }
 }
 
 .gender-parent-wrapper {
-  border: 1px solid $boxBorderColor;
-  border-radius: 3px;
-  padding: 8px 20px;
+  border: 1px solid #b6bcc5;
+  border-radius: 5px;
+  padding: 12px 20px;
   text-align: center;
+  height: 40px;
   .genderWrapper {
     width: 50%;
     display: inline-block;
@@ -86,8 +89,6 @@ ion-card {
   color: $themeColor2;
   font-family: $fontFamily1;
 }
-
-
 
 .menu-header {
   .ion-icon-wrapper {

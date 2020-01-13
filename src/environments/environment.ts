@@ -3,8 +3,10 @@
 // The list of file replacements can be found in `angular.json`.
 
 export const environment = {
-  production: false
-};
+  production: false,
+  //apiHost: "http://localhost:3000/qsServices"
+  apiHost: "http://ec2-3-136-96-166.us-east-2.compute.amazonaws.com/qsServices"
+}; 
 
 /*
  * For easier debugging in development mode, you can import the following file
