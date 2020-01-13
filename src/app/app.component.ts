@@ -3,10 +3,6 @@ import { Component } from "@angular/core";
 import { Platform } from "@ionic/angular";
 import { SplashScreen } from "@ionic-native/splash-screen/ngx";
 import { StatusBar } from "@ionic-native/status-bar/ngx";
-import { QSHttpService } from "./services/qs-http.service.service";
-import { URL_QS } from "./services/constants/global.constants";
-import { CommonService } from "./services/common.service";
-import { Router } from "@angular/router";
 
 @Component({
   selector: "app-root",
@@ -15,15 +11,13 @@ import { Router } from "@angular/router";
 })
 export class AppComponent {
   navigate: any;
-  profileName: String;
   constructor(
     private platform: Platform,
     private splashScreen: SplashScreen,
-    private statusBar: StatusBar,
-    private qsHttpService: QSHttpService,
-    private router: Router
+    private statusBar: StatusBar
   ) {
     this.initializeApp();
+    this.sideMenu();
   }
 
   initializeApp() {
@@ -33,21 +27,39 @@ export class AppComponent {
     });
   }
 
-  willOpenMenu() {
-    console.log("willOpenMenu");
-    this.profileName = sessionStorage.getItem("fullName");
-  }
-
-  logout() {
-    this.qsHttpService.call_WS_POST(URL_QS.path.logoutUserAll, "").subscribe(
-      resp => {
-        if (resp && resp["headerDto"].responseCode == 200) {
-          this.router.navigateByUrl("/login");
-        }
+  sideMenu() {
+    this.navigate = [
+      {
+        title: "Home",
+        url: "/home",
+        icon: "home"
       },
-      error => {
-        console.log("");
+      {
+        title: "My Profile",
+        url: "/my-profile",
+        icon: "person"
+      },
+      {
+        title: "Community Stats",
+        url: "/contacts", 
+        icon: "contacts"
+      },
+
+      {
+        title: "Notification",
+        url: "/contacts",
+        icon: "notifications"
+      },
+      {
+        title: "Setting",
+        url: "/contacts",
+        icon: "settings"
+      },
+      {
+        title: "Logout",
+        url: "/login",
+        icon: "log-out"
       }
-    );
+    ];
   }
 }
