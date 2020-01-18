@@ -5,7 +5,7 @@
 export const environment = {
   production: false,
   //apiHost: "http://localhost:3000/qsServices"
-  apiHost: "http://ec2-3-136-96-166.us-east-2.compute.amazonaws.com/qsServices"
+  apiHost: "https://anjuman-app.herokuapp.com/qsServices"
 }; 
 
 /*
