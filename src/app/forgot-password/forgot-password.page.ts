@@ -31,7 +31,7 @@ export class ForgotPasswordPage implements OnInit {
       });
   }
   async forgotPswrdSubmit() {
-    this.commonService.showLoader();
+    this.commonService.showLoader("Please wait...");
     await Auth.forgotPasswordSubmit(this.user.email, this.user.otpNumber.toString(), this.user.password)
       .then(data => {
         this.commonService.dismiss();
