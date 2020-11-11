@@ -28,6 +28,7 @@
     "@ionic-native/status-bar": "^5.0.0",
     "@ionic/angular": "^4.7.1",
     "@ionic/storage": "^2.2.0",
+    "aws-amplify": "^1.1.24-beta.10",
     "cordova-sqlite-storage": "^4.0.0",
     "core-js": "^2.5.4",
     "primeicons": "^2.0.0",
@@ -59,7 +60,7 @@
     "protractor": "~5.4.0",
     "ts-node": "~7.0.0",
     "tslint": "~5.15.0",
-    "typescript": "~3.4.3"
+    "typescript": "^3.4.3"
   },
   "description": "An Ionic project",
   "cordova": {

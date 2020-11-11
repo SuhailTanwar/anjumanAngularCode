@@ -9,19 +9,19 @@
       <div class="create-acc-header">
         CREATE ACCOUNT
       </div>
-      <form [formGroup]="createUserFG">
+      <form (submit)="f.form.valid && signUp()" #f="ngForm" name="form">
         <div class="input-items">
-          <ion-label position="stacked">First Name</ion-label>
-          <ion-input
-            type="text"
-            formControlName="firstName"
-            id="firstName"
-            name="firstName"
-          >
+          <ion-label position="stacked">User Name</ion-label>
+          <ion-input type="text" class="form-control" [(ngModel)]="user.username" #username="ngModel" id="username"
+            name="username" pattern="[a-zA-Z0-9]+([_ -]?[a-zA-Z0-9])*$" required>
             <ion-icon name="person"></ion-icon>
           </ion-input>
+          <ion-text color="danger" *ngIf="f.submitted && username.invalid">
+            <span *ngIf="username.errors.required">Please enter Username</span>
+            <span *ngIf="username.errors.pattern">Please enter valid Username</span>
+          </ion-text>
         </div>
-        <div class="input-items">
+        <!-- <div class="input-items">
           <ion-label position="stacked">Father's Name</ion-label>
           <ion-input
             type="text"
@@ -31,8 +31,8 @@
           >
             <ion-icon name="person"></ion-icon>
           </ion-input>
-        </div>
-        <div class="input-items">
+        </div> -->
+        <!-- <div class="input-items">
           <ion-label position="stacked">Last Name</ion-label>
           <ion-input
             type="text"
@@ -42,8 +42,8 @@
           >
             <ion-icon name="person"></ion-icon>
           </ion-input>
-        </div>
-        <div class="input-items">
+        </div> -->
+        <!-- <div class="input-items">
           <ion-label position="stacked">Gender</ion-label>
           <div class="gender-parent-wrapper">
             <span class="custom-radio genderWrapper col-sm-6">
@@ -68,50 +68,54 @@
               <label class="custom-control-label" for="Female">Female</label>
             </span>
           </div>
-        </div>
+        </div> -->
         <div class="input-items">
           <ion-label position="stacked">Mobile</ion-label>
-          <ion-input
-            type="number"
-            formControlName="mobile"
-            id="mobile"
-            name="mobile"
-          >
+          <ion-input type="text" class="form-control" [(ngModel)]="user.phone_number" #phone_number="ngModel"
+            id="phone_number" name="phone_number" clearInput placeholder="Enter Mobile No."
+            pattern="^((\\+91-?)|0)?[0-9]{10}$">
             <ion-icon name="call"></ion-icon>
           </ion-input>
+          <ion-text color="danger" *ngIf="f.submitted && phone_number.errors">
+            <span *ngIf="phone_number.errors.pattern">Enter valid 10 digit mobile
+              no.</span>
+          </ion-text>
         </div>
         <div class="input-items">
           <ion-label position="stacked">Email ID</ion-label>
-          <ion-input
-            type="mail"
-            formControlName="email"
-            id="email"
-            name="email"
-          >
+          <ion-input type="mail" class="form-control" [(ngModel)]="user.email" #email="ngModel" id="email" name="email"
+            pattern="[a-z0-9._%+-]+@[a-z0-9.-]+\.[a-z]{2,4}$" clearInput placeholder="Enter Email address" required>
             <ion-icon name="mail"></ion-icon>
           </ion-input>
+          <ion-text color="danger" *ngIf="f.submitted && email.invalid">
+            <span *ngIf="email.errors.required">Please enter Email address</span>
+            <span *ngIf="email.errors.pattern">Please enter valid email address</span>
+          </ion-text>
         </div>
         <div class="input-items">
           <ion-label position="stacked">Password</ion-label>
-          <ion-input
-            type="password"
-            formControlName="password"
-            id="password"
-            name="password"
-          >
+          <ion-input type="password" class="form-control" [(ngModel)]="user.password" #password="ngModel" id="password"
+            name="password" minlength="6" clearInput placeholder="Enter Password" required>
             <ion-icon name="lock"></ion-icon>
           </ion-input>
+          <ion-text color="danger" *ngIf="f.submitted && password.invalid">
+            <span *ngIf="password.errors.required">Please enter Password</span>
+            <span *ngIf="password.errors.minlength">Password must be at least 6 characters</span>
+          </ion-text>
         </div>
         <div class="input-items">
           <ion-label position="stacked">Confirm Password</ion-label>
-          <ion-input
-            type="password"
-            formControlName="confirmPassword"
-            id="confirmPassword"
-            name="confirmPassword"
-          >
+          <ion-input type="password" class="form-control" [(ngModel)]="user.confirmPassword" #confirmPassword="ngModel"
+            id="confirmPassword" name="confirmPassword" clearInput placeholder="Enter Confirm Password" required>
             <ion-icon name="lock"></ion-icon>
           </ion-input>
+          <ion-text color="danger" *ngIf="f.submitted && confirmPassword.invalid">
+            <span *ngIf="confirmPassword.errors.required">Please enter Confirm Password</span>
+          </ion-text>
+          <ion-text color="danger" *ngIf="f.submitted && confirmPassword.valid">
+            <span *ngIf="!isBothPswrdSame">Confirm Password & Password must be
+              same</span>
+          </ion-text>
         </div>
         <!-- <div class="input-items">
         <ion-label position="stacked">Confirm Password</ion-label>
@@ -142,20 +146,12 @@
         <div></div>
 
         <div [ngStyle]="{'text-align':'center'}">
-          <button class="submit-btn" (click)="create_user()">
-            SIGN UP
-          </button>
+          <button class="submit-btn"> SIGN UP </button>
         </div>
 
-        <div
-          [ngStyle]="{'font-size':'14px','text-align':'center','font-family':'system-ui'}"
-        >
-          Already have an account?<span
-            class="hightlight-txt"
-            [routerLink]="['/login']"
-          >
-            Sign In</span
-          >
+        <div [ngStyle]="{'font-size':'14px','text-align':'center','font-family':'system-ui'}">
+          Already have an account?<span class="hightlight-txt" [routerLink]="['/login']">
+            LOGIN</span>
         </div>
       </form>
     </ion-card-header>

@@ -10,7 +10,7 @@
 <ion-content>
   <ion-card>
     <ion-card-header>
-      <form [formGroup]="profileFG">
+      <form [formGroup]="profileFG" (ngSubmit)="updateUser()">
         <div class="input-items">
           <ion-label position="stacked">First Name</ion-label>
           <ion-input type="text" formControlName="firstName">
@@ -47,11 +47,7 @@
                 value="male"
                 formControlName="gender"
               /> -->
-              <p-radioButton
-                name="gender"
-                value="male"
-                formControlName="gender"
-              ></p-radioButton>
+              <p-radioButton name="gender" value="male" formControlName="gender"></p-radioButton>
               <label class="custom-control-label" for="Male">Male</label>
             </span>
 
@@ -64,11 +60,7 @@
                 value="female"
                 formControlName="gender"
               /> -->
-              <p-radioButton
-                name="gender"
-                value="female"
-                formControlName="gender"
-              ></p-radioButton>
+              <p-radioButton name="gender" value="female" formControlName="gender"></p-radioButton>
               <label class="custom-control-label" for="Female">Female</label>
             </span>
           </div>
@@ -82,22 +74,19 @@
               max="2092-12-09"
               value="1991-05-23T15:03:46.789"
             ></ion-datetime> -->
-            <ion-datetime
-              value=""
-              min="1940"
-              max="2099"
-              displayFormat="DD-MMM-YYYY"
-              formControlName="dob"
-              placeholder="DD-MMM-YYYY"
-              monthShortNames="JAN, FEB, MAR, APR, MAY, JUNE, JULY, AUG, SEPT, OCT, NOV, DEC"
-            ></ion-datetime>
+            <ion-datetime value="" min="1940" max="2099" displayFormat="DD/MMM/YYYY" formControlName="dob"
+              placeholder="Select Date of Birth"
+              monthShortNames="JAN, FEB, MAR, APR, MAY, JUNE, JULY, AUG, SEPT, OCT, NOV, DEC"></ion-datetime>
           </ion-item>
         </div>
         <div class="input-items">
           <ion-label position="stacked">Mobile</ion-label>
-          <ion-input type="number" formControlName="mobile">
+          <ion-input type="number" formControlName="mobile" placeholder="Enter Mobile No." min="0" max="10">
             <ion-icon name="call"></ion-icon>
           </ion-input>
+          <ion-text color="danger" *ngIf="invalidMobileNo">
+            <span>Enter valid 10 digit mobile no.</span>
+          </ion-text>
         </div>
         <div class="input-items">
           <ion-label position="stacked">Email ID</ion-label>
@@ -121,7 +110,7 @@
         <div></div>
 
         <div [ngStyle]="{'text-align':'center'}">
-          <button class="submit-btn" (click)="updateUser()">
+          <button class="submit-btn">
             UPDATE
           </button>
         </div>
