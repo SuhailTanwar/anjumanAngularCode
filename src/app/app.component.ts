@@ -27,17 +27,16 @@ export class AppComponent {
     this.initializeApp();
   }
 
-  initializeApp() {
+  async initializeApp() {
     this.platform.ready().then(() => {
       this.statusBar.styleDefault();
       this.splashScreen.hide();
     });
+    let { username } = await Auth.currentAuthenticatedUser({ bypassCache: true });
+    this.profileName = username;
   }
 
-  willOpenMenu() {
-    console.log("willOpenMenu");
-    this.profileName = sessionStorage.getItem("fullName");
-  }
+
 
   logout() {
     // this.qsHttpService.call_WS_POST(URL_QS.path.logoutUserAll, "").subscribe(
